@@ -1,0 +1,337 @@
+/* THEME*/
+:root{
+    --bg:#fff3c4;
+    --ink:#3b2a1a;
+    --panel:#fffdf3;
+    --btn:#ffd23f;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"])
+    {
+        --bg:#1e2535;
+        --ink:#fdf1cc;
+        --panel:#2b3449
+    }
+}
+:root[data-theme="dark"]{
+    --bg:#1e2535;
+    --ink:#fdf1cc;
+    --panel:#2b3449
+}
+/* Safe-area spacing for phones */
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+/* Basic reset */
+*{box-sizing:border-box}[hidden]{display:none!important}
+/* Page font and colours */
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'VT323',ui-monospace,monospace;
+    font-size:22px;
+    line-height:1.15
+}
+/* Main column */
+#game{
+    max-width:960px;
+    margin:0 auto;
+    padding:10px
+}
+/*title */
+h1{
+    font:clamp(11px,2.6vw,18px)/1.5 'Press Start 2P',monospace;
+    margin:4px 0 10px;
+    text-align:center
+}
+#stage{
+    position:relative;
+    aspect-ratio:16/9;
+    border:4px solid #3b2a1a;
+    box-shadow:0 6px 0 rgba(0,0,0,.3);
+    background:#8ad6ff;
+    overflow:hidden;
+    --u:3px
+}
+/* The pixel canvas */
+#cv{
+    width:100%;
+    height:100%;
+    display:block;
+    image-rendering:pixelated}
+/* FREE FRUIT JUICE STANDEE: fixed to the ground, never animated. Sign on top, two legs underneath (one each side) */
+#standee{
+    position:absolute;
+    left:26%;
+    bottom:20.5%;
+    width:14.5%;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center
+}
+#standee .bd{
+    background:#ffe066;
+    border:max(2px,calc(var(--u)*1.2)) solid #c1121f;
+    padding:calc(var(--u)*2) 2px;
+    text-align:center;
+    font:max(calc(var(--u)*4.4),8px)/1.6 'Press Start 2P',monospace;
+    color:#c1121f;
+    box-shadow:0 calc(var(--u)*1) 0 rgba(0,0,0,.25)
+}
+#standee .bd span{
+    display:block
+}
+/*standee leg*/
+#standee .lg{
+    width:100%;
+    height:calc(var(--u)*22);
+    position:relative
+}
+#standee .lg i{
+    position:absolute;
+    top:0;
+    width:calc(var(--u)*2.4);
+    height:100%;
+    background:#8a5a2b;
+    box-shadow:inset calc(var(--u)*-.8) 0 #6e4521;
+    transform-origin:50% 0
+}
+#standee .lg i.l{
+    left:14%;
+    transform:rotate(7deg)
+}
+#standee .lg i.r{
+    right:14%;
+    transform:rotate(-7deg)
+}
+#standee .lg::before{
+    content:"";
+    position:absolute;
+    left:22%;
+    right:22%;
+    top:45%;
+    height:calc(var(--u)*1.6);
+    background:#6e4521
+}
+#standee .lg::after{
+    content:"";
+    position:absolute;
+    left:-4%;
+    right:-4%;
+    bottom:calc(var(--u)*-1);
+    height:calc(var(--u)*2.2);
+    background:rgba(0,0,0,.2);
+    border-radius:50%
+}
+/* worry note*/
+#note{
+    position:absolute;
+    z-index:3;
+    width:max(24%,120px);
+    max-height:32%;
+    overflow:hidden;
+    transform:translate(-50%,-50%);
+    background:#fff4b8;
+    color:#3b2a1a;
+    border:2px solid #8a5a2b;
+    box-shadow:0 3px 0 rgba(0,0,0,.25);
+    padding:5px 6px;
+    font-size:max(calc(var(--u)*5.2),12px);
+    line-height:1.05;
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+    pointer-events:none
+}
+#note.long{
+    font-size:max(calc(var(--u)*4),10px)
+}
+#note.gone{
+    background:transparent;
+    border-color:transparent;
+    box-shadow:none;
+    transition:all .5s
+}
+#note span{
+    display:inline-block
+}
+/* Sound*/
+#mute{
+    position:absolute;
+    top:6px;
+    right:6px;
+    z-index:4;
+    font-size:9px;
+    padding:7px 8px
+}
+/* Pixel-style buttons */
+.btn{
+    font:12px/1.4 'Press Start 2P',monospace;
+    padding:12px 14px;
+    background:var(--btn);
+    color:#3b2a1a;
+    border:3px solid #3b2a1a;
+    box-shadow:0 4px 0 #3b2a1a;
+    cursor:pointer;
+    margin:6px 6px 8px 0
+}
+.btn:active:not(:disabled){
+    transform:translateY(3px);
+    box-shadow:0 1px 0 #3b2a1a
+}
+.btn:disabled{
+    opacity:.5;
+    cursor:not-allowed
+}
+button:focus-visible,textarea:focus-visible{
+    outline:4px solid #2563eb;
+    outline-offset:2px
+}
+/* dialogues*/
+#panel{
+    margin-top:14px;
+    background:var(--panel);
+    border:4px solid #3b2a1a;
+    padding:14px;
+    box-shadow:0 5px 0 rgba(0,0,0,.25)
+}
+#who{
+    font:10px 'Press Start 2P',monospace;
+    color:#c1121f;
+    display:block;
+    margin-bottom:8px
+}
+@media (prefers-color-scheme:dark){
+    #who{color:#ff8fa3}
+}
+#txt{
+    margin:0 0 12px;
+    font-size:26px;
+    white-space:pre-line
+}
+.grid{
+    display:grid;
+    gap:10px;
+    margin-bottom:6px
+}
+/* Grids:characters and fruits*/
+#chars{
+    grid-template-columns:repeat(4,1fr);
+    max-width:420px
+}
+#fruits{
+    grid-template-columns:repeat(4,1fr)
+}
+@media (max-width:600px){
+    #fruits{
+        grid-template-columns:repeat(2,1fr)
+    }
+    #txt{
+        font-size:22px
+    }
+}
+/* Selectable cards*/
+.card{
+    background:#fff;
+    color:#3b2a1a;
+    border:3px solid #3b2a1a;
+    padding:6px;
+    cursor:pointer;
+    font:inherit;
+    font-size:20px;
+    text-align:center
+}
+.card canvas{
+    width:100%;
+    max-width:64px;
+    image-rendering:pixelated;
+    display:block;
+    margin:0 auto 4px
+}
+.card[aria-pressed=true]{
+    background:#ffe066;
+    box-shadow:0 0 0 3px #2563eb
+}
+.card small{
+    display:block;
+    font-size:17px;
+    line-height:1
+}
+/* Fruit animation */
+.fruit canvas{
+    animation:bob 1.6s ease-in-out infinite
+}
+.fruit:nth-child(2) canvas{
+    animation-delay:.3s
+}
+.fruit:nth-child(3) canvas{
+    animation-delay:.6s
+}
+.fruit:nth-child(4) canvas{
+        animation-delay:.9s
+}
+@keyframes bob{
+    50%{
+        transform:translateY(-5px)
+    }
+}
+/* Worry text box */
+textarea{
+    width:100%;
+    height:110px;
+    resize:vertical;
+    font:24px/1.1 'VT323',monospace;
+    padding:10px;
+    border:3px solid #3b2a1a;
+    background:#fff;
+    color:#3b2a1a
+}
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px
+}
+.hint{
+    font-size:19px;
+    opacity:.8
+}
+
+@media (prefers-reduced-motion:reduce){
+    #standee,
+    .fruit canvas{
+        animation:none
+    }
+    *{
+        transition:none!important
+    }
+    }
+
+    #game{max-width:1280px}                   
+
+#layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 360px; 
+  gap:14px;
+  align-items:start;
+}
+
+#stage{width:min(100%,calc((100vh - 90px)*16/9))}
+
+#panel{
+  margin-top:0;                               
+  position:sticky;top:10px;                  
+  max-height:calc(100vh - 20px);
+  overflow-y:auto;                            
+}
+#chars{max-width:none}                        
+#fruits{grid-template-columns:repeat(2,1fr)} 
+#txt{font-size:22px}                          
+
+@media (max-width:900px){
+  #layout{grid-template-columns:1fr}
+  #stage{width:100%}
+  #panel{position:static;max-height:none;margin-top:14px}
+}

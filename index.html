@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>When Life Gives You Lemons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head><body>
+<main id="game">
+<h1>🍋 When Life Gives You Lemons</h1>
+
+<div id="layout">
+
+<div id="stage">
+ <canvas id="cv" width="400" height="225" role="img" aria-label="A sunny pixel-art juice stand with a friendly vendor, a blender, fruit baskets and a Free Fruit Juice sign"></canvas>
+ 
+ <div id="standee" role="img" aria-label="Standee sign: FREE FRUIT JUICE"><div class="bd"><span>FREE</span><span>FRUIT</span><span>JUICE</span></div><div class="lg"><i class="l"></i><i class="r"></i></div></div>
+ <div id="note" hidden></div>
+ <button id="mute" class="btn" aria-pressed="false">🔇 Sound off</button>
+</div>
+
+<section id="panel" aria-label="Game controls">
+ <span id="who"></span><p id="txt" aria-live="polite"></p>
+ <div id="sel"><div id="chars" class="grid" role="group" aria-label="Choose your character"></div>
+ <button id="go" class="btn">Walk to the Stand ▶</button>
+</div>
+ <div id="wr" hidden>
+  <label for="ta" class="hint" style="display:block;margin-bottom:6px">Share as much or as little as you like.</label>
+  <textarea id="ta" maxlength="800" placeholder="Leave a little worry here…"></textarea>
+  <div class="row">
+    <span id="cnt" class="hint" aria-live="off">0/800</span><button id="pour" class="btn">Pour It Out</button>
+</div>
+ </div>
+ <div id="fru" hidden>
+    <div id="fruits" class="grid" role="group" aria-label="Choose a fruit">
+    </div>
+    <button id="blend" class="btn" disabled>Blend My Worries</button>
+</div>
+ <div id="ctl" hidden>
+    <button id="skip" class="btn">Skip animation ⏭</button>
+</div>
+ 
+ <div id="fin" hidden>
+    <button id="again" class="btn">Make another juice</button>
+    <button id="exit" class="btn">Head back</button>
+</div>
+</section>
+
+</div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
